@@ -35,4 +35,39 @@ RSpec.describe Account, type: :model do
       )
       expect(dalton.errors[:user_name]).to_not be_empty
   end
+    it 'is not valid if user_name is less than 6' do
+      dalton = Account.create(
+        # user_name: 'ddro'
+         password: '1234',
+        # email: 'daltonb@gmail.com'
+      )
+      expect(dalton.errors[:password]).to_not be_empty
+  end
+    it 'does not allow duplicate user_name ' do
+      Account.create(
+        user_name: 'ddro'
+        # password: '1234',
+        # email: 'daltonb@gmail.com'
+      )
+    dalton = Account.create(
+      user_name: 'ddro'
+      # password: '1234',
+      # email: 'daltonb@gmail.com'
+    )
+      expect(dalton.errors[:user_name]).to_not be_empty
+  end
+    it 'does not allow duplicate password ' do
+      Account.create(
+        # user_name: 'ddro'
+        password: '12345'
+        # email: 'daltonb@gmail.com'
+      )
+    dalton = Account.create(
+      # user_name: 'ddro'
+       password: '12345'
+      # email: 'daltonb@gmail.com'
+    )
+      expect(dalton.errors[:password]).to_not be_empty
+  end
+
 end
